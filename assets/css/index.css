@@ -1,0 +1,144 @@
+/* сбрасываем отступы у всех элементов с помощью обращения через звездочку */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Обращаемся к корневому элементу, то есть html. Здесь удобно объявлять переменные */
+:root {
+  /* переменная для плавности движения */
+  --transition: 1s cubic-bezier(0.125, 0.495, 0, 1);
+}
+/* Подключаем шрифты локально */
+@font-face {
+  /* называем наш шрифт как угодно 
+  Далее будем указывать это имя
+  */
+  font-family: kamerik-3d;
+  /*указываем путь до файла с шрифтом  */
+  src: url(../fonts/kamerik205-heavy.woff2);
+  /* Указываем размер шрифта */
+  font-weight: 900;
+}
+@font-face {
+  font-family: meeriweather-italik-3d;
+  src: url(../fonts/merriweather-regular-italic.woff2);
+}
+
+body {
+  background-color: black;
+  color: white;
+  /* то самое имя шрифта */
+  font-family: kamerik-3d;
+}
+.logo {
+  width: 150px;
+  height: 150px;
+  background-repeat: no-repeat;
+}
+
+.layers {
+  perspective: 1000px;
+  overflow: hidden;
+}
+
+.layers__container {
+  height: 100vh;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--move-y)) rotateY(var(--move-x));
+
+  will-change: transform;
+  transition: transform var(--transition);
+}
+.layers__item {
+  position: absolute;
+  /* top: -5vw;
+    left: -5vw;
+    right: -5vw;
+    bottom: -5vw; */
+  inset: -8vw;
+  background-size: cover;
+  background-position: center;
+  /* transform: rotateX(var(--move-y)) rotateY(var(--move-x)); */
+}
+.layer-3 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  text-align: center;
+}
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.hero-content h1 {
+  letter-spacing: 5px;
+  margin-bottom: 20px;
+  font-size: 48px;
+  color: rgb(255, 255, 255);
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.852);
+}
+
+.hero-content__p {
+  font-size: 16px;
+}
+.button-start {
+  margin-top: 20px;
+  background: none;
+  color: white;
+  text-transform: uppercase;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  font-weight: 600;
+  font-size: 25px;
+  transition: 0.5s;
+  border: 1px solid rgba(255, 255, 255, 0.496);
+}
+.button-start:hover {
+  transform: scale(110%);
+  -webkit-text-stroke-width: 0.4px;
+  -webkit-text-stroke-color: rgb(255, 255, 255);
+  /* background-color: rgba(59, 118, 45, 0.255); */
+  color: rgba(255, 255, 255, 0);
+}
+.button-start:active {
+  transform: scale(95%);
+  /* background-color: rgba(43, 90, 31, 0.241); */
+}
+
+/* Расположение слоев по уровню */
+/* Соединяем 2 значения свойства transform - движение по оси Z в глубину и масштабирование scale */
+.layer-1 {
+  transform: translateZ(-100px) scale(1.88);
+}
+.layer-2 {
+  transform: translateZ(80px) scale(0.88);
+}
+.layer-3 {
+  transform: translateZ(180px) scale(0.58);
+}
+.layer-4 {
+  transform: translateZ(190px) scale(0.88);
+}
+.layer-5 {
+  transform: translateZ(300px) scale(0.88);
+}
+.layer-6 {
+  transform: translateZ(380px) scale(0.88);
+}
+/* Указываем, что у 4 5 и 6 слоев не будет курсора */
+.layer-4,
+.layer-5,
+.layer-6 {
+  pointer-events: none;
+}
+canvas {
+  width: 100%;
+}
+

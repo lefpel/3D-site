@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Устанавливаем кодировку сайта (чтобы текст был не как закорючки) -->
+    <meta charset="UTF-8" />
+    <!-- Режим совместивости с браузером, здесь говорится, что страница должна отображаться в Edge -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Подключаем файлик со стилями -->
+    <link rel="stylesheet" href="./assets/css/index.css" />
+
+    <!-- Определяем размер сайта исходя из размера устройства
+    width=device-width указывает браузеру использовать ширину устройства в качестве ширины страницы.
+    initial-scale=1.0 говорит браузеру, что исходный масштаб страницы
+    должен быть установлен на 100% (то есть страница должна показываться без масштабирования).
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--подключаем скрипты и с помощью defer говорим, чтобы скрипты подгружались только после полной загрузки страницы  -->
+    <script defer src="./assets/js/app.js"></script>
+    <script defer src="./assets/js/rain.js"></script>
+    <script defer src="./assets/js/audiorain.js"></script>
+    <!-- Заголовок страницы -->
+    <title>Parallax Effect</title>
+  </head>
+  <body>
+    <!-- Секция со слоями -->
+    <section class="layers">
+      <!-- контейнер для слоев -->
+      <div class="layers__container">
+        <!-- слои имеют общий класс layers__item и свой собственный layer-номер__слоя -->
+        <div
+          class="layers__item layer-1"
+          style="background-image: url(./assets/images/layer-1.jpg)"
+        ></div>
+        <!-- Также у слоев 1,2,5,6 изображения вставлены через css свойство background-image -->
+        <div
+          class="layers__item layer-2"
+          style="background-image: url(./assets/images/layer-2.png)"
+        ></div>
+        <div class="layers__item layer-3">
+          <div
+            class="logo"
+            style="background-image: url(./assets/images/logo.svg)"
+          ></div>
+          <!-- Слой с текстом, заголовком и логотипом -->
+          <div class="hero-content">
+            <!-- тег h1 для заголовка -->
+            <h1>
+              Natural Forest <br />
+              Parallax-3D
+            </h1>
+            <!-- Тег p для обычного текста -->
+            <p class="hero-content__p">
+              Creating a beautiful 3D website with a Parallax
+            </p>
+            <!-- Кнопка, которая будет включать и выключать звук дождь -->
+            <button class="button-start">rain</button>
+          </div>
+        </div>
+        <div class="layers__item layer-4">
+          <!-- тег canvas нужен для отрисовки графики через js -->
+          <canvas class="rain"></canvas>
+        </div>
+        <!-- дальше идут слои с изображениями -->
+        <div
+          class="layers__item layer-5"
+          style="background-image: url(./assets/images/layer-5.png)"
+        ></div>
+        <div
+          class="layers__item layer-6"
+          style="background-image: url(./assets/images/layer-6.png)"
+        ></div>
+      </div>
+    </section>
+    <!-- <div style="height: 100vh"></div> -->
+  </body>
+  <audio autoplay loop preload="auto">
+    <!-- <source src="./assets/sounds/rain.mp3" type="audio/ogg; codecs=opus" /> -->
+  </audio>
+</html>
